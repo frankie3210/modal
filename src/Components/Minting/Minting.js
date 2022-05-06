@@ -143,14 +143,26 @@ function Minting({ setpopup }) {
           &times;
         </span>
         {blockchain.account === "" || blockchain.account == null ? (
-          <button
-            onClick={(e) => {
-              e.preventDefault();
-              dispatch(connect());
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              gap: "10px",
             }}
           >
-            connect
-          </button>
+            <button
+              onClick={(e) => {
+                e.preventDefault();
+                dispatch(connect());
+              }}
+            >
+              connect
+            </button>
+            <p style={{ color: "red" }}>
+              {blockchain.errorMsg !== "" ? blockchain.errorMsg : null}
+            </p>
+          </div>
         ) : (
           <div
             style={{

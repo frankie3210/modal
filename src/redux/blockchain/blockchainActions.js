@@ -60,6 +60,7 @@ export const connect = () => {
         const networkId = await ethereum.request({
           method: "net_version",
         });
+
         if (networkId == CONFIG.NETWORK.ID) {
           const SmartContractObj = new Web3EthContract(
             abi,
@@ -72,30 +73,41 @@ export const connect = () => {
               web3: web3,
             })
           );
-          localStorage.setItem('isWalletConnected', true)
+          localStorage.setItem("isWalletConnected", true);
           // Add listeners start
           ethereum.on("accountsChanged", (accounts) => {
             dispatch(updateAccount(accounts[0]));
-            if(accounts[0] === "" || accounts[0] == null){
-              localStorage.setItem('isWalletConnected', false)
-              //console.log("isWalletConnected = false")
-            }
             //console.log("accountsChanged")
             //console.log(accounts[0])
+            if (accounts[0] === "" || accounts[0] == null) {
+              localStorage.setItem("isWalletConnected", false);
+              //console.log("isWalletConnected = false")
+            }
           });
           ethereum.on("chainChanged", () => {
             window.location.reload();
-            console.log("chainChanged")
-          });          
+            console.log("chainChanged");
+          });
           // Add listeners end
         } else {
           dispatch(connectFailed(`Change network to ${CONFIG.NETWORK.NAME}.`));
+          await web3.currentProvider
+            .request({
+              method: "wallet_switchEthereumChain",
+              params: [{ chainId: Web3.utils.toHex(CONFIG.NETWORK.ID) }],
+            })
+            .then(() => {
+              console.log("switched");
+              localStorage.setItem("isWalletConnected", true);
+              window.location.reload();
+            });
         }
       } catch (err) {
-        dispatch(connectFailed("Something went wrong."));
+        dispatch(connectFailed("Something went wrong. " + err.message));
       }
     } else {
-      dispatch(connectFailed("Install Metamask."));
+      dispatch(connectFailed("Please Install Metamask."));
+      window.open("https://metamask.app.link/dapp/modaltest1.netlify.app/");
     }
   };
 };
