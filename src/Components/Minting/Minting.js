@@ -172,7 +172,7 @@ function Minting({ setpopup }) {
               gap: "10px",
             }}
           >
-            <p>tium doloribus!</p>
+            <p>Minting!</p>
             Total Supply: {data.totalSupply} / {CONFIG.MAX_SUPPLY}
             <div style={{ display: "flex", gap: "10px" }}>
               <button
