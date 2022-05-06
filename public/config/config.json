@@ -1,0 +1,18 @@
+{
+  "CONTRACT_ADDRESS": "0x37B0AF6D8d836bd6b2448f686B77662E29E09cAd",
+  "SCAN_LINK": "https://rinkeby.etherscan.io/address/0x37B0AF6D8d836bd6b2448f686B77662E29E09cAd",
+  "NETWORK": {
+    "NAME": "Ethereum",
+    "SYMBOL": "ETH",
+    "ID": 4
+  },
+  "NFT_NAME": "Test NFT",
+  "SYMBOL": "TTT",
+  "MAX_SUPPLY": 10,
+  "WEI_COST": 75000000000000000,
+  "DISPLAY_COST": 0.075,
+  "GAS_LIMIT": 285000,
+  "MARKETPLACE": "Opeansea",
+  "MARKETPLACE_LINK": "https://testnets.opensea.io/collection/test-nft-2-hih1ywz9cn",
+  "SHOW_BACKGROUND": true
+}
