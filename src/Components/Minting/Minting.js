@@ -99,15 +99,17 @@ function Minting({ setpopup }) {
   };
 
   const getEvent = () => {
-    blockchain.smartContract.events
-      .minted()
-      .on("connected", function (subscriptionId) {
-        console.log(subscriptionId);
-      })
-      .on("data", function (event) {
-        //console.log(event); // same results as the optional callback above
-        getData();
-      });
+    if (blockchain.account !== "" && blockchain.smartContract !== null) {
+      blockchain.smartContract.events
+        .minted()
+        .on("connected", function (subscriptionId) {
+          console.log(subscriptionId);
+        })
+        .on("data", function (event) {
+          //console.log(event); // same results as the optional callback above
+          getData();
+        });
+    }
   };
 
   const handlePopupClose = (e) => {
