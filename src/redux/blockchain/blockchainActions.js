@@ -118,16 +118,3 @@ export const updateAccount = (account) => {
     dispatch(fetchData(account));
   };
 };
-
-export const updateChain = (account) => {
-  return async (dispatch) => {
-    try {
-      const CONFIG = await configResponse.json();
-      const { ethereum } = window;
-      const metamaskIsInstalled = ethereum && ethereum.isMetaMask;
-      const accounts = await ethereum.request({
-        method: "eth_requestAccounts",
-      });
-    } catch {}
-  };
-};
